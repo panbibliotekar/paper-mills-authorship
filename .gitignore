@@ -1,0 +1,6 @@
+retraction_watch.csv
+outputs/*.csv
+outputs/*.xlsx
+outputs/*.png
+__pycache__/
+.DS_Store

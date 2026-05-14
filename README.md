@@ -16,3 +16,19 @@ The dataset is not redistributed in this repository. To reproduce the analysis, 
 
 ```text
 retraction_watch.csv
+
+## Reproducing the analysis
+
+Install the required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the analysis script:
+
+```bash
+python scripts/paper_mill_authorship_analysis.py
+```
+
+The script generates summary tables and figures in the `outputs/` directory.

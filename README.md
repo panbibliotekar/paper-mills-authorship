@@ -16,6 +16,7 @@ The dataset is not redistributed in this repository. To reproduce the analysis, 
 
 ```text
 retraction_watch.csv
+```
 
 ## Reproducing the analysis
 

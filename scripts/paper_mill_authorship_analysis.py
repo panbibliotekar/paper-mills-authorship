@@ -20,6 +20,16 @@ paper_mill["author_count"] = paper_mill["Author"].fillna("").apply(
 
 paper_mill = paper_mill[paper_mill["author_count"] > 0].copy()
 
+invalid_authors = ["unknown", "anonymous", "anon"]
+
+paper_mill = paper_mill[
+    ~paper_mill["Author"]
+    .fillna("")
+    .str.strip()
+    .str.lower()
+    .isin(invalid_authors)
+].copy()
+
 paper_mill["authorship_type"] = paper_mill["author_count"].apply(
     lambda n: "solo" if n == 1 else "multi"
 )

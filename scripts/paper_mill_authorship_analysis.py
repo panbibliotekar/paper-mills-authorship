@@ -1,12 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-import argparse
 
 # =============================================================================
 # Configuration
 # =============================================================================
 
+DATA_FILE = "Suppl_file.xlsx"
 START_YEAR = 2000
 END_YEAR = 2024
 EXPECTED_FINAL_N = 11704
@@ -556,7 +556,6 @@ def create_publisher_table(df):
 
     return table2
 
-
 # =============================================================================
 # Publication-type table
 # =============================================================================
@@ -738,40 +737,13 @@ def create_figure2(df):
 
 def main():
 
-    parser = argparse.ArgumentParser(
-        description=(
-            "Analyse authorship patterns "
-            "among paper-mill-related "
-            "retractions in the "
-            "Retraction Watch Database."
-        )
-    )
-
-    parser.add_argument(
-        "data_file",
-        nargs="?",
-        default="retraction_watch.csv",
-        help=(
-            "Path to the Retraction Watch "
-            "CSV or Excel file "
-            "(default: retraction_watch.csv)"
-        )
-    )
-
-    args = parser.parse_args()
-
     OUTPUT_DIR.mkdir(
         exist_ok=True
     )
 
-    print(
-        f"Loading data from: "
-        f"{args.data_file}"
-    )
+    print(f"Loading data from: {DATA_FILE}")
 
-    df = load_data(
-        args.data_file
-    )
+    df = load_data(DATA_FILE)
 
     validate_columns(
         df
@@ -829,23 +801,16 @@ def main():
         paper_mill
     )
 
-    # Save definitive processed analytic dataset
     paper_mill.to_csv(
-        OUTPUT_DIR /
-        "paper_mill_retractions_processed.csv",
+        OUTPUT_DIR / "paper_mill_retractions_processed.csv",
         index=False
     )
 
     print()
-    print(
-        "Analysis completed successfully."
-    )
+    print("Analysis completed successfully.")
 
     print()
-    print(
-        "Cleaning summary:"
-    )
-
+    print("Cleaning summary:")
     print(
         cleaning_log.to_string(
             index=False
@@ -854,15 +819,11 @@ def main():
 
     print()
     print(
-        f"Final analytic N: "
-        f"{len(paper_mill):,}"
+        f"Final analytic N: {len(paper_mill):,}"
     )
 
     print()
-    print(
-        "Authorship summary:"
-    )
-
+    print("Authorship summary:")
     print(
         summary.to_string(
             index=False
@@ -870,19 +831,13 @@ def main():
     )
 
     print()
-    print(
-        "Temporal dynamics:"
-    )
-
+    print("Temporal dynamics:")
     print(
         temporal_table.to_string()
     )
 
     print()
-    print(
-        "Publication-type analysis:"
-    )
-
+    print("Publication-type analysis:")
     print(
         publication_type_table.to_string()
     )
@@ -892,7 +847,6 @@ def main():
         "Top publishers among "
         "solo-authored records, 2020-2024:"
     )
-
     print(
         publisher_table.to_string(
             index=False
